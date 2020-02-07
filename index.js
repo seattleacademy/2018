@@ -50,7 +50,7 @@ app.use('', express.static('public', { 'index': false }), serveIndex('public', {
 
 let server = http.createServer(app);
 
-const serverPort = 1500; // put your port number here
+const serverPort = 1500; //put your port number here
 server.listen(serverPort);
 console.log('listening on port', serverPort)
 
