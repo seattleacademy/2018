@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>getCounter</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+</head>
+
+<body class="with-top-navbar">
+    <div class="container-fluid container-fluid-spacious">
+        <div class="dashhead mt-4">
+            <div class="dashhead-titles">
+                <h6 class="dashhead-subtitle">Counter</h6>
+                <h2 class="dashhead-title" id="counter">...</h2>
+
+                 <h6 class="dashhead-subtitle">userName</h6>
+                <h2 class="dashhead-title" id="userName">...</h2>
+
+            </div>
+        </div>
+    </div>
+    <script>
+    const counter = document.getElementById('counter');
+    writeCounter = str => counter.textContent = str;
+
+    const userName = document.getElementById('userName');
+    writeUserName = str => userName.textContent = str;
+
+    async function getSensors() {
+        let pathname = location.pathname;
+        let partname = pathname.substring(0,pathname.lastIndexOf('/'));
+        console.log(partname)
+        const response = await fetch(partname + '/sensors');
+        const myJson = await response.json();
+        writeCounter(myJson.counter);
+
+        writeUserName(myJson.userName);
+
+    }
+
+    getSensors();
+    </script>
+</body>
+
+</html>
